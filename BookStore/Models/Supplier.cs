@@ -1,0 +1,38 @@
+namespace BookStore.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("Supplier")]
+    public partial class Supplier
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Supplier()
+        {
+            Categories = new HashSet<Category>();
+            PurchaseOrders = new HashSet<PurchaseOrder>();
+        }
+
+        [StringLength(20)]
+        public string SupplierID { get; set; }
+
+        [Required]
+        public string SupplierName { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
+        [Required]
+        [StringLength(12)]
+        public string PhoneNumber { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Category> Categories { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
+    }
+}
